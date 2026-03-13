@@ -1,0 +1,28 @@
+{
+    "name": "LP + Frequency",
+    "encoding_fn": "onehot_encoding",
+    "training_options": "init+norm",
+    "saving_name": "lp+frequency",
+    "model_type": "Merger",
+    "parameters": {
+        "branches_dict": {
+            "Frequency Branch": "training_results/final/onehot/branch/frequency/init+norm/model.ptm",
+            "LP Branch": "training_results/final/onehot/branch/lp/init+norm/model.ptm"
+        },
+        "dropout_prob": 0.1,
+        "output_size": 2700
+    },
+    "normalization": true,
+    "init_weights": true,
+    "hyperparameters": {
+        "batch_size": 128,
+        "epochs": 30,
+        "learning_rate": 0.01
+    },
+    "epsilon": 0,
+    "min_score": 0,
+    "save_model": true,
+    "save_logits": true,
+    "verbose": 4,
+    "show_graphs": false
+}

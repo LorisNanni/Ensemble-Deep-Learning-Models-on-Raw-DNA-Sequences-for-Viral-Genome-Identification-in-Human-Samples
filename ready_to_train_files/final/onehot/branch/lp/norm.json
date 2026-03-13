@@ -1,0 +1,30 @@
+{
+    "name": "LP Branch",
+    "encoding_fn": "onehot_encoding",
+    "training_options": "norm",
+    "saving_name": "lp",
+    "model_type": "Branch",
+    "parameters": {
+        "dropout_prob": 0.1,
+        "features_size": 5,
+        "filter_size": 1000,
+        "kernel_size": 14,
+        "norm_type": 1,
+        "pooling_layer": "nn.LPPool1d",
+        "sample_dim": 300,
+        "trainable": true
+    },
+    "normalization": true,
+    "init_weights": false,
+    "hyperparameters": {
+        "batch_size": 128,
+        "epochs": 30,
+        "learning_rate": 0.01
+    },
+    "epsilon": 0,
+    "min_score": 0,
+    "save_model": true,
+    "save_logits": true,
+    "verbose": 4,
+    "show_graphs": false
+}
