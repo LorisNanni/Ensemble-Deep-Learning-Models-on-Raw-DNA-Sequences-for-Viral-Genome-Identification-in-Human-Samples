@@ -34,13 +34,16 @@ We provide training script files for the best models that we found (see the pape
 To reproduce the results of the paper, you can use the following command:
 
 ```python
-    python scripts/produce_logits_all.py [PATH to dataset.csv]
-    # this will produce logits.csv for each model that we used in the paper's ensemble.
-    # by not providing the save_folder argument, the logits will be saved in the same folder as the model.ptm file, in the form of a logits.csv file.
+python scripts/produce_logits_all.py [PATH to dataset.csv]
+# this will produce logits.csv for each model that we used in the paper's ensemble.
+# by not providing the save_folder argument, the logits will be saved in the same folder as the model.ptm file, in the form of a logits.csv file.
 
-    python scripts/test_ensemble.py
-    # this will load all the logits.csv files produced in the previous step.
-    # the script will then produce the ensemble predictions and evaluate the performance of the ensemble model, printing the results to the console.
+python scripts/test_ensemble.py
+# this will load all the logits.csv files produced in the previous step.
+# the script will then produce the ensemble predictions and evaluate the performance of the ensemble model, printing the results to the console.
+
+## you should obtain the same results as in the paper:
+[i] auroc: 0.939085556097011
 ```
 
 
@@ -75,5 +78,5 @@ python scripts/produce_logits.py dataset/fullset_test.csv -m model_zoo/onehot/me
 If you use ViralMiner in your research, please cite the following paper:
 
 ```
-TBD
+TBD (Paper Under Review)
 ```
