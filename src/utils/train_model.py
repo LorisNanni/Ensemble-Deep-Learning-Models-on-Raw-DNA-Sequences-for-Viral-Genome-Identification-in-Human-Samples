@@ -86,7 +86,8 @@ def train_one_epoch(model, dataloader, loss_fn, optimizer, scheduler, epoch):
 
     # Set the model to training mode - important for batch normalization and dropout layers
     model.train()
-    for batch, (X, y) in tqdm(enumerate(dataloader), desc=f"Epoch {str(epoch+1).zfill(2)}", total=len(dataloader)):
+    # for batch, (X, y) in tqdm(enumerate(dataloader), desc=f"Epoch {str(epoch+1).zfill(2)}", total=len(dataloader)):
+    for batch, (X, y) in tqdm(enumerate(dataloader), desc=f"Epoch {str(epoch+1).zfill(2)}", total=len(dataloader), disable=True):
         
         # Set the gradients to zero
         optimizer.zero_grad()
@@ -119,9 +120,6 @@ def train_one_epoch(model, dataloader, loss_fn, optimizer, scheduler, epoch):
             output_string = f"\rEpoch {str(epoch+1).zfill(2)} - Loss: {loss:>2.5e}  [{current:>{dim_size}d}/{size:>{dim_size}d}]"
             output_string += f" - Learning Rate: {current_lr:>.4e}"
             print(output_string, end='', flush=True)
-        
-        if batch > 5:
-            break
     
     if not scheduler_step_flag:
         scheduler.step()

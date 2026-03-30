@@ -1,0 +1,9 @@
+*.log
+*.txt
+logits*/
+logs*/
+__pycache__/
+**/__pycache__/
+**/logits.csv
+
+logits_anell.zip

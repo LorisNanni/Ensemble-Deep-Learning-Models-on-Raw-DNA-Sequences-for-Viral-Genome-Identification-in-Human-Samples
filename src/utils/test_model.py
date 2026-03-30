@@ -15,7 +15,7 @@ def test_model(model, dataloader, score_fn, verbose=None):
     # Evaluating the model with torch.no_grad() ensures that no gradients are computed during test mode
     # also serves to reduce unnecessary gradient computations and memory usage for tensors with requires_grad=True
     with torch.no_grad():
-        for (X, y) in tqdm(dataloader, desc="Testing", total=len(dataloader)):
+        for (X, y) in tqdm(dataloader, desc="Testing", total=len(dataloader), disable=(not verbose)):
         
             # Transfer data to correct device
             X = X.to(model.device)

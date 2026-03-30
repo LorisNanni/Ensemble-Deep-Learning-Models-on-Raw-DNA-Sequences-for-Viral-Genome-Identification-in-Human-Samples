@@ -72,3 +72,47 @@ def labeling_encoding_RNN(dna_line):
     labeled_data = map(lambda e: labels[e], dna_line)
     labeled_data = torch.tensor(list(labeled_data),dtype=torch.long)
     return labeled_data
+
+
+
+
+# ================= #
+# DNA DATASET CLASS #
+# ================= #
+
+
+class CSVDatasetFromPD(Dataset):
+    def __init__(self, dataset_pd, transform=None):
+        self.dataset = dataset_pd
+        self.set_transform(transform)
+    
+    def __len__(self):
+        return len(self.dataset)
+    
+    def __getitem__(self, idx):
+        dna, label = self.dataset.loc[idx]
+        label = torch.tensor(label,dtype=torch.float)
+        if self.__transform: dna = self.__transform(dna)
+        return dna, label
+
+    def set_transform(self, transform):
+        if isinstance(transform,str): transform = eval(transform)
+        self.__transform = transform
+
+    def get_dataloader(self, batch_size, shuffle=True, drop_last=False):
+        return DataLoader(self, batch_size=batch_size, shuffle=shuffle, drop_last=drop_last)
+
+def createCSVDatasetTrainVal(dataset_file_path, transform=None):
+        dataset = pd.read_csv(dataset_file_path,header=None,usecols=[1,2])
+
+        ### split dataset into train and val (80/20 split) and create the new datasets
+        train_size = int(0.8 * len(dataset))
+        
+        ## shuffle the dataset before splitting
+        dataset = dataset.sample(frac=1, random_state=42).reset_index(drop=True)
+
+        # train_data = CSVDatasetFromPD and val_data = CSVDatasetFromPD
+        train_data = CSVDatasetFromPD(dataset[:train_size].reset_index(drop=True), transform=transform)
+        val_data = CSVDatasetFromPD(dataset[train_size:].reset_index(drop=True), transform=transform)
+        
+        return train_data, val_data
