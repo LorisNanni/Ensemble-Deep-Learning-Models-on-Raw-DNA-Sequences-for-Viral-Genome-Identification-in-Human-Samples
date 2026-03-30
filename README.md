@@ -46,6 +46,31 @@ python scripts/test_ensemble.py
 [i] auroc: 0.939085556097011
 ```
 
+---
+
+## Dataset description
+
+In ```dataset/``` folder, you can find two datasets:
+```
+dataset/DNA_data.rar
+dataset/noise.rar
+```
+
+The first, ```DNA_data.rar```, contains the raw DNA sequences that were used for training and testing the models.
+In the paper this dataset is referred to as "VM"
+<br>
+(Tampuu A, Bzhalava Z, Dillner J, Vicente R (2019) ViraMiner: Deep learning on raw DNA sequences for identifying viral genomes in human samples. PLOS ONE 14(9): e0222271. https://doi.org/10.1371/journal.pone.0222271)
+
+The second, ```noise.rar```, contains simulated noisy data that can be used for testing the models. We generated it from VM test set by introducing random point mutations (substitutions) at different rates. For each mutation rate, we created five distinct versions of the test set using different seeds for the pseudo-random number generator, enabling statistical analysis.<br>
+Specifically:
+ - 3 levels of noise: low (1%), medium (5%), and high (10%).
+ - for each level of noise we generated 5 different datasets, each with a different random seed (for a total of 15 datasets).
+
+
+
+
+---
+
 
 ### Training a single model
 
@@ -58,6 +83,9 @@ python scripts/train.py --d ../dataset/ -p ready_to_train_files/final/onehot/bra
 # for example for a merger
 python scripts/train.py --d ../dataset/ -p ready_to_train_files/final/onehot/merger/frequency+pattern+lp/init+norm.json --save_dir model_zoo_local/merger/frequency+pattern+lp/init+norm.json
 ```
+
+---
+
 
 ### Testing a single model
 
@@ -73,10 +101,11 @@ To produce logits (that will be saved as .csv) use the following command:
 python scripts/produce_logits.py dataset/fullset_test.csv -m model_zoo/onehot/merger/frequency+pattern+lp/init+norm/model.ptm --save_folder frequency+pattern+lp-init+norm.csv
 ```
 
+---
 
 ## Citation
 If you use ViralMiner in your research, please cite the following paper:
 
 ```
-TBD (Paper Under Review)
+TBD (Paper Under Review in MDPI Sensors Journal)
 ```
