@@ -54,6 +54,7 @@ In ```dataset/``` folder, you can find two datasets:
 ```
 dataset/DNA_data.rar
 dataset/noise.rar
+dataset/UnseenVirus.rar
 ```
 
 The first, ```DNA_data.rar```, contains the raw DNA sequences that were used for training and testing the models.
@@ -67,7 +68,12 @@ Specifically:
  - for each level of noise we generated 5 different datasets, each with a different random seed (for a total of 15 datasets).
 
 
-
+The third, is the "unseen" dataset. Training and validation datasets are derived from the VM dataset, with all anellovirus 
+sequences removed from both sets. The test set is composed of both non-viral sequences 
+(26,296 contigs) and anellovirus sequences (1,348 contigs). In this setting, anelloviruses 
+represent a completely novel viral category from the model’s perspective, as they are not 
+encountered during training. This setup enables evaluation of the model’s capability to 
+identify viruses belonging to entirely unseen classes. 
 
 ---
 
