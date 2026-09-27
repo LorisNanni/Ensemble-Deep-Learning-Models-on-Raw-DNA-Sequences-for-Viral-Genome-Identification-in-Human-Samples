@@ -4,6 +4,13 @@ Ensemble Deep Learning Models on Raw DNA Sequences for Viral Genome Identifi cat
 
 ViralMiner is a tool designed to identify and analyze viral sequences from metagenomic data. It provides a comprehensive pipeline for the detection of viral genomes, enabling researchers to explore the diversity and function of viruses in various environments.
 
+
+Some notes:
+Ensure the input CSV file strictly contains two columns, the raw nucleotide sequence and the binary target label, excluding any auxiliary sequence IDs or metadata columns to avoid parsing and alignment mismatches. 
+Sequence Length Adaptation, When running datasets with sequence lengths that differ from the default benchmark, adjust the pooling layer window/stride parameters accordingly to preserve valid feature map dimensions.
+When evaluating the 10-subnetwork FullE ensemble, subnetwork predictions are aggregated via the classical Sum-Rule by computing the unweighted average of individual model probabilities. 
+
+
 ## Installation / Requirements
 
 No specific version of Python/PyTorch is required.
