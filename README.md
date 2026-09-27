@@ -7,9 +7,9 @@ ViralMiner is a tool designed to identify and analyze viral sequences from metag
 
 Some notes:
 
-Ensure the input CSV file strictly contains two columns, the raw nucleotide sequence and the binary target label, excluding any auxiliary sequence IDs or metadata columns to avoid parsing and alignment mismatches. 
+a) Ensure the input CSV file strictly contains two columns, the raw nucleotide sequence and the binary target label, excluding any auxiliary sequence IDs or metadata columns to avoid parsing and alignment mismatches. 
 
-Sequence Length Adaptation, when running datasets with sequence lengths that differ from the default benchmark, adjust the pooling layer window/stride parameters accordingly to preserve valid feature map dimensions.
+b) Sequence Length Adaptation, when running datasets with sequence lengths that differ from the default benchmark, adjust the pooling layer window/stride parameters accordingly to preserve valid feature map dimensions.
 When evaluating the 10-subnetwork FullE ensemble, subnetwork predictions are aggregated via the classical Sum-Rule by computing the unweighted average of individual model probabilities. 
 
 
